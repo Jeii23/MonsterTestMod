@@ -4,6 +4,8 @@ import basemod.BaseMod;
 import basemod.interfaces.EditKeywordsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
+import com.megacrit.cardcrawl.dungeons.TheCity;
+import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import monstermod.util.GeneralUtils;
 import monstermod.util.KeywordInfo;
 import monstermod.util.TextureLoader;
@@ -58,6 +60,11 @@ public class BasicMod implements
         //Set up the mod information displayed in the in-game mods menu.
         //The information used is taken from your pom.xml file.
         BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, null);
+        // Add a single monster encounter
+      //  BaseMod.addMonster(MyMonster.ID, () -> new MyMonster());
+        // Add a multi-monster encounter
+
+    //    BaseMod.addMonsterEncounter(TheCity.ID, new MonsterInfo(MyMonster.ID, 5));
     }
 
     /*----------Localization----------*/
@@ -165,7 +172,12 @@ public class BasicMod implements
         return resourcesFolder + "/images/relics/" + file;
     }
 
-
+    public static String makeMonsterPath(String resourcePath) {
+        return getModID() + "Resources/img/monsters/" + resourcePath;
+    }
+    public static String getModID() {
+        return "monsterMod";
+    }
     //This determines the mod's ID based on information stored by ModTheSpire.
     private static void loadModInfo() {
         Optional<ModInfo> infos = Arrays.stream(Loader.MODINFOS).filter((modInfo)->{
