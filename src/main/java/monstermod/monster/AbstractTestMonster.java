@@ -8,24 +8,24 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class AbstractMonster extends CustomMonster {
+public abstract class AbstractTestMonster extends CustomMonster {
   protected Map<Byte, EnemyMoveInfo> moves;
   protected boolean firstMove = true;
   private static final float ASCENSION_DAMAGE_BUFF_PERCENT = 1.10f;
   private static final float ASCENSION_TANK_BUFF_PERCENT = 1.10f;
   private static final float ASCENSION_SPECIAL_BUFF_PERCENT = 1.5f;
 
-  public AbstractMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
+  public AbstractTestMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
     super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
     setUpMisc();
   }
 
-  public AbstractMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY, boolean ignoreBlights) {
+  public AbstractTestMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY, boolean ignoreBlights) {
     super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY, ignoreBlights);
     setUpMisc();
   }
 
-  public AbstractMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl) {
+  public AbstractTestMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl) {
     super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl);
     setUpMisc();
   }

@@ -4,11 +4,18 @@ import basemod.BaseMod;
 import basemod.interfaces.EditKeywordsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
+import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.dungeons.TheCity;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.MonsterInfo;
+import com.megacrit.cardcrawl.monsters.exordium.GremlinFat;
+import com.megacrit.cardcrawl.monsters.exordium.GremlinWarrior;
+import com.megacrit.cardcrawl.monsters.exordium.GremlinWizard;
 import monstermod.util.GeneralUtils;
 import monstermod.util.KeywordInfo;
 import monstermod.util.TextureLoader;
+import monstermod.monster.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.GdxRuntimeException;
@@ -52,6 +59,7 @@ public class BasicMod implements
         BaseMod.subscribe(this); //This will make BaseMod trigger all the subscribers at their appropriate times.
         logger.info(modID + " subscribed to BaseMod.");
     }
+    public static final String GREMLIN = makeID("Gremlins_Bullits");
 
     @Override
     public void receivePostInitialize() {
@@ -61,10 +69,13 @@ public class BasicMod implements
         //The information used is taken from your pom.xml file.
         BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, null);
         // Add a single monster encounter
-      //  BaseMod.addMonster(MyMonster.ID, () -> new MyMonster());
-        // Add a multi-monster encounter
-
-    //    BaseMod.addMonsterEncounter(TheCity.ID, new MonsterInfo(MyMonster.ID, 5));
+        BaseMod.addMonster(GREMLIN, () -> new MonsterGroup(
+            new AbstractMonster[]{
+                new SpikeMonster(-320.0F, 25.0F),
+                new GremlinWarrior(-160.0F, -12.0F),
+                new GremlinFat(25.0F, -35.0F),
+                new GremlinWizard(205.0F, 40.0F)}));
+        BaseMod.addMonsterEncounter(Exordium.ID, new MonsterInfo(GREMLIN, 5));
     }
 
     /*----------Localization----------*/
@@ -116,6 +127,8 @@ public class BasicMod implements
                 localizationPath(lang, "RelicStrings.json"));
         BaseMod.loadCustomStringsFile(UIStrings.class,
                 localizationPath(lang, "UIStrings.json"));
+        BaseMod.loadCustomStringsFile(MonsterStrings.class,
+            localizationPath(lang, "monsters.json"));
     }
 
     @Override

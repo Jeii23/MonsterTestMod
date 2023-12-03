@@ -1,0 +1,13 @@
+{
+
+  "SpikeMonster": {
+    "MOVES": [
+      "Get Spikes",
+      "OUCH FOR YOU"
+    ],
+    "NAME": "SpikeMonster",
+    "DIALOG": [
+      "Peix bullit que fas?"
+    ]
+  }
+}
